@@ -44,16 +44,16 @@ import argparse
 def read_urls(filename):
     puzzle_urls = []
     full_urls = []
-    
+
     with open(filename) as f:
         for line in f:
             url = re.findall(r'(\S*puzzle\S*.jpg)', line)
             if url and url[0] not in puzzle_urls:
                 puzzle_urls.append(url[0])
-    
+
         puzzle_urls.sort(
             key=lambda x: re.search(r'\w[^-]*$', x).group(0))
-    
+
         for item in puzzle_urls:
             new_items = 'http://code.google.com{}'.format(item)
             full_urls.append(new_items)
